@@ -12,6 +12,12 @@
 		904BC3631F451E2F00229A68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 904BC3611F451E2F00229A68 /* Main.storyboard */; };
 		904BC3651F451E2F00229A68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 904BC3641F451E2F00229A68 /* Assets.xcassets */; };
 		904BC3681F451E2F00229A68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 904BC3661F451E2F00229A68 /* LaunchScreen.storyboard */; };
+		904BC3701F4522BE00229A68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC36F1F4522BE00229A68 /* LoginViewController.swift */; };
+		904BC3741F45509700229A68 /* BookListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC3731F45509700229A68 /* BookListTableViewController.swift */; };
+		904BC37A1F455A5B00229A68 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC3791F455A5B00229A68 /* Book.swift */; };
+		904BC37C1F45635100229A68 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC37B1F45635100229A68 /* BookDetailViewController.swift */; };
+		904BC37E1F456E6E00229A68 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC37D1F456E6E00229A68 /* WebViewController.swift */; };
+		904BC3821F466C9800229A68 /* AddBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904BC3811F466C9800229A68 /* AddBookViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		904BC3641F451E2F00229A68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		904BC3671F451E2F00229A68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		904BC3691F451E2F00229A68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		904BC36F1F4522BE00229A68 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		904BC3731F45509700229A68 /* BookListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListTableViewController.swift; sourceTree = "<group>"; };
+		904BC3791F455A5B00229A68 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Book.swift; path = ../Book.swift; sourceTree = "<group>"; };
+		904BC37B1F45635100229A68 /* BookDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		904BC37D1F456E6E00229A68 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		904BC3811F466C9800229A68 /* AddBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,12 +66,18 @@
 		904BC35C1F451E2F00229A68 /* MyBook */ = {
 			isa = PBXGroup;
 			children = (
+				904BC3791F455A5B00229A68 /* Book.swift */,
 				904BC35D1F451E2F00229A68 /* AppDelegate.swift */,
 				904BC35F1F451E2F00229A68 /* ViewController.swift */,
 				904BC3611F451E2F00229A68 /* Main.storyboard */,
 				904BC3641F451E2F00229A68 /* Assets.xcassets */,
 				904BC3661F451E2F00229A68 /* LaunchScreen.storyboard */,
 				904BC3691F451E2F00229A68 /* Info.plist */,
+				904BC36F1F4522BE00229A68 /* LoginViewController.swift */,
+				904BC3731F45509700229A68 /* BookListTableViewController.swift */,
+				904BC37B1F45635100229A68 /* BookDetailViewController.swift */,
+				904BC37D1F456E6E00229A68 /* WebViewController.swift */,
+				904BC3811F466C9800229A68 /* AddBookViewController.swift */,
 			);
 			path = MyBook;
 			sourceTree = "<group>";
@@ -137,7 +155,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				904BC3701F4522BE00229A68 /* LoginViewController.swift in Sources */,
+				904BC3821F466C9800229A68 /* AddBookViewController.swift in Sources */,
 				904BC3601F451E2F00229A68 /* ViewController.swift in Sources */,
+				904BC37C1F45635100229A68 /* BookDetailViewController.swift in Sources */,
+				904BC3741F45509700229A68 /* BookListTableViewController.swift in Sources */,
+				904BC37E1F456E6E00229A68 /* WebViewController.swift in Sources */,
+				904BC37A1F455A5B00229A68 /* Book.swift in Sources */,
 				904BC35E1F451E2F00229A68 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +328,7 @@
 				904BC36E1F451E2F00229A68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
