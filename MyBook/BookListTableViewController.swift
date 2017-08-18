@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BookListTableViewController: UITableViewController {
+class BookListTableViewController: UITableViewController, AddBookDelegate {
 
     var books:[Book] = Array()
 
@@ -23,9 +23,16 @@ class BookListTableViewController: UITableViewController {
         let book2 = Book(title: "아무것도 하지 않을 권리", writer: "정희재", publisher: "갤리온", coverImage:UIImage(named:"book2")!, price: 12600, description: "언제부터 쉰다는 것이 용기를 내야만 할 수 있는 일이 됐을까? 왜 꼭 모든 사람이 ‘더 빨리’, ‘더 열심히’를 외치며 살아야만 할까? 전작 『어쩌면 내가 가장 듣고 싶었던 말』에서 따뜻한 위로의 문장들로 독자들의 공감을 얻었던 정희재 작가가, 이번에는 나를 피곤하게 만드는 세상 속에서 잠시 멈춰 쉬어갈 용기에 대해 말한다. 우리가 무엇이 되어야 하고, 무엇을 해야 한다는 생각조차 내려놓은 순간, 진짜 나답게 살 수 있다고. 정작 우리 삶을 풍요롭게 만드는 순간들은 아무것도 하지 않고 보낸 시간들이며, 그 여유로움과 충만함으로 다음 순간 더 행복하게 살아갈 힘을 얻을 수 있다고 말이다. 지금 당장 이것 아니면 큰일 날 것처럼 스스로를 몰아세우고, 남들과 비교하며 스스로를 불행하게 만들고, 불확실한 미래를 두려워하는 모든 이들에게 바치는 휴식 같은 책이다.", url : "http://www.yes24.com/24/goods/43333409?scode=032&OzSrank=2")
         let book3 = Book(title: "나는 생각이 너무 많아", writer: "크리스텔 프티콜랭 저 / 이세진", publisher: "부키", coverImage: UIImage(named:"book3")!, price: 13320, description: "프랑스의 유명한 심리치료사이자 베스트셀러 『굿바이 심리 조종자』의 저자 크리스텔 프티콜랭에 따르면 이들은 그저 남달리 예민한 지각과 명석한 두뇌를 가지고 있을 뿐이다. 크리스텔 프티콜랭은 20여 년간의 임상 경험을 바탕으로, ‘생각이 많아 고민인 사람들’에게 즐겁고도 명쾌한 해결책을 제시한다. 신경학적이고 객관적인 근거를 기반으로 그들이 ‘왜’ 생각이 많을 수밖에 없는지, 보통 사람들과 ‘무엇이’ 다른지, 그 비상한 머리를 가지고 ‘어떻게’ 잘 살아갈 수 있는지에 대해 말해 준다.", url : "http://www.yes24.com/24/goods/13195838?scode=032&OzSrank=3")
         
+        
+        let book4 = Book(title: "iphone SDK Tutorial", writer: nil, publisher: nil, coverImage: nil, price: nil, description: nil, url: nil)
+        
+        let book5 = Book(title: "sample")
+        
         self.books.append(book1)
         self.books.append(book2)
         self.books.append(book3)
+        self.books.append(book4)
+        self.books.append(book5)
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,9 +67,9 @@ class BookListTableViewController: UITableViewController {
         if let bookCell = cell as? BookTableViewCell{
             let book = self.books[indexPath.row]
         
-//            let numFormatter: NumberFormatter = NumberFormatter()
-//            numFormatter.numberStyle = NumberFormatter.Style.decimal
-//            
+            let numFormatter: NumberFormatter = NumberFormatter()
+            numFormatter.numberStyle = NumberFormatter.Style.decimal
+//
 //            let price = book.price
 //            let priceStr = numFormatter.string(from: NSNumber(integerLiteral: price))
             
@@ -70,7 +77,19 @@ class BookListTableViewController: UITableViewController {
             bookCell.bookTitleLabel.text = book.title
             bookCell.bookWriterLabel.text = book.writer
             //bookCell.bookPriceLabel.text = priceStr
-            bookCell.bookPriceLabel.text = String(book.price)
+            
+//            if let bookPrice = book.price{
+//                bookCell.bookPriceLabel.text = String(bookPrice)
+//            }
+            
+            if let price = book.price{
+                let priceStr = numFormatter.string(from:NSNumber (integerLiteral: price))
+                bookCell.bookPriceLabel.text = priceStr
+            }else{
+                bookCell.bookPriceLabel.text = ""
+            }
+                
+            //bookCell.bookPriceLabel.text = String(book.price)
             bookCell.bookImageView.image = book.coverImage
             
             return bookCell
@@ -126,23 +145,41 @@ class BookListTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as? UITableViewCell
-        let vc = segue.destination as? BookDetailViewController
         
-        guard let selectCell = cell, let detailVC = vc else{
-            return
+        if segue.identifier == "addvc" {
+            
+            if let addVC = segue.destination as? AddBookViewController{
+                addVC.delegate = self
+            }
+            
+            
+            
+        }else if segue.identifier == "detailvc"{
+            
+            let cell = sender as? UITableViewCell
+            let vc = segue.destination as? BookDetailViewController
+            
+            guard let selectCell = cell, let detailVC = vc else{
+                return
+            }
+            
+            if let idx = self.tableView.indexPath(for: selectCell){
+                detailVC.book = self.books[idx.row]
+            }
+            
+            //        if let selCell = cell{
+            //             let cellIdx = self.tableView.indexPath(for: selCell)
+            //            print(cellIdx?.row)
+            //        }
+            //
         }
         
-        if let idx = self.tableView.indexPath(for: selectCell){
-            detailVC.book = self.books[idx.row]
-        }
-        
-//        if let selCell = cell{
-//             let cellIdx = self.tableView.indexPath(for: selCell)
-//            print(cellIdx?.row)
-//        }
-//       
+
     }
+    
+    func sendNewBook(book:Book){
+        self.books.append(book)
+        self.tableView.reloadData()    }
   
 
 }

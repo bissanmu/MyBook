@@ -103,7 +103,7 @@
                                     <outlet property="bookPriceLabel" destination="cTu-LO-6pe" id="wwH-b7-8Je"/>
                                     <outlet property="bookTitleLabel" destination="a0t-Gk-XgC" id="L9z-QM-Nws"/>
                                     <outlet property="bookWriterLabel" destination="67g-DX-GyL" id="SjN-M1-Qfc"/>
-                                    <segue destination="gDl-RY-BzI" kind="show" id="7yE-SN-8p9"/>
+                                    <segue destination="gDl-RY-BzI" kind="show" identifier="detailvc" id="7yE-SN-8p9"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -115,7 +115,7 @@
                     <navigationItem key="navigationItem" title="Book" id="Bqd-gM-Opu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iZp-lY-Gsl">
                             <connections>
-                                <segue destination="SIe-AA-uPp" kind="presentation" id="kYN-Mv-JIf"/>
+                                <segue destination="SIe-AA-uPp" kind="presentation" identifier="addvc" id="kYN-Mv-JIf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -140,10 +140,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5vu-2L-H3b">
-                                        <rect key="frame" x="87" y="129" width="240" height="246"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xuw-sU-bKK">
                                         <rect key="frame" x="87" y="391" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -179,6 +175,14 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Of-Ol-aMq">
+                                        <rect key="frame" x="0.0" y="616" width="414" height="120"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="설명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaa-C8-Kve">
                                         <rect key="frame" x="27" y="577" width="30" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -191,12 +195,18 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="저장"/>
+                                        <connections>
+                                            <action selector="save:" destination="SIe-AA-uPp" eventType="touchUpInside" id="UH3-I1-pgW"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9Y-HO-Jdg">
                                         <rect key="frame" x="49" y="39" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="취소"/>
+                                        <connections>
+                                            <action selector="cancle:" destination="SIe-AA-uPp" eventType="touchUpInside" id="eFW-zP-O4T"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eBn-YU-682">
                                         <rect key="frame" x="186" y="34" width="42" height="40"/>
@@ -206,21 +216,35 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6Of-Ol-aMq">
-                                        <rect key="frame" x="0.0" y="616" width="414" height="120"/>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Camera-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5vu-2L-H3b">
+                                        <rect key="frame" x="87" y="114" width="240" height="246"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="wvF-A7-jgb" appends="YES" id="opV-zV-dLa"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="authorTextField" destination="qw2-8k-lAC" id="3jl-KW-VRn"/>
+                        <outlet property="coverImageView" destination="5vu-2L-H3b" id="kyT-Q0-1Uc"/>
+                        <outlet property="descriptionTextField" destination="6Of-Ol-aMq" id="DGn-VO-LNq"/>
+                        <outlet property="priceTextField" destination="iOA-cc-8nP" id="50b-m4-Vqh"/>
+                        <outlet property="publisherTextField" destination="Q8g-VN-rHq" id="Sgc-pb-hZ0"/>
+                        <outlet property="titleTextField" destination="xuw-sU-bKK" id="wNC-ja-Est"/>
+                        <outlet property="urlTextField" destination="NpK-ah-TB4" id="HI2-sX-sxM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUK-9V-XZS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wvF-A7-jgb">
+                    <connections>
+                        <outlet property="delegate" destination="SIe-AA-uPp" id="bOu-xS-M8H"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1053.6231884057972" y="1686.6847826086957"/>
         </scene>
@@ -381,7 +405,6 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9pu-OL-qzb">
                                         <rect key="frame" x="0.0" y="698" width="414" height="802"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
